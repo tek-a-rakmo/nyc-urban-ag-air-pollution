@@ -1,0 +1,37 @@
+# Ignore large data files
+*.zip
+*.gpkg
+*.tif
+*.tiff
+*.csv
+!data/raw/sample_data.csv 
+*.gdb
+# GIS / Geodatabases
+*.gdb
+*.gdb/*
+*.gdbtable
+*.gdbindexes
+*.lock
+
+# Large spatial data
+*.tif
+*.tiff
+*.img
+
+# QGIS generated
+*.qgs~
+*.qgz~
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# System
+Thumbs.db
+.DS_Store
+
+# Ignore specific large outputs if any
+outputs/
+!outputs/figures/
+!outputs/tables/
