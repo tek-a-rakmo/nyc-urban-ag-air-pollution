@@ -122,12 +122,21 @@ def process_raster_points_buffer_zonal(raster_path, point_layer, target_crs, col
 
     
 #--- User Layer_Paths
-random_points_path ='D:/PLSCI 5200/Final_Project_GIS/final_project_gis.gpkg|layername=nyc_moua_random_points'
-root_raster_folder = r"D:\PLSCI 5200\Final_Project_GIS\Data\air-quality\air_quality_NYCCAS\AnnAvg_1_15_300m\AnnAvg_1_15_300m"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+
+random_points_path = os.path.join(project_root, "data", "raw", "Data", "nyc_moua", "nyc_moua.gpkg|layername=nyc_moua_random_points")
+# Note: For loading layers with pipes, better to construct the path effectively.
+# Below fixes logic to ensure path string is correct for QGIS
+random_points_gpkg = os.path.join(project_root, "data", "raw", "Data", "nyc_moua", "nyc_moua.gpkg")
+random_points_path = f"{random_points_gpkg}|layername=nyc_moua_random_points"
+
+root_raster_folder = os.path.join(project_root, "data", "raw", "Data", "air-quality", "air_quality_NYCCAS", "AnnAvg_1_15_300m", "AnnAvg_1_15_300m")
+
 target_crs_epsg = "EPSG:26918"  # Matching working model
 column_prefix = "random_sample"
 zonal_prefix = "buffer_300m"
-output_csv = r"D:\PLSCI 5200\Final_Project_GIS\Random_UAG_buffer_zonal.csv"
+output_csv = os.path.join(project_root, "outputs", "tables", "Random_UAG_buffer_zonal.csv")
 #---
 
 #--- Initiate Vector Layer

@@ -85,11 +85,18 @@ def process_raster_sample_points(raster_path, point_layer, target_crs, column_pr
 
     
 #--- User Layer_Paths
-random_points_path ='D:/PLSCI 5200/Final_Project_GIS/final_project_gis.gpkg|layername=nyc_moua_random_points'
-root_raster_folder = r"D:\PLSCI 5200\Final_Project_GIS\Data\air-quality\air_quality_NYCCAS\AnnAvg_1_15_300m\AnnAvg_1_15_300m"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+
+# Fix for loading layer with pipes - construct path + layername
+random_points_gpkg = os.path.join(project_root, "data", "raw", "final_project_gis.gpkg")
+random_points_path = f"{random_points_gpkg}|layername=nyc_moua_random_points"
+
+root_raster_folder = os.path.join(project_root, "data", "raw", "Data", "air-quality", "air_quality_NYCCAS", "AnnAvg_1_15_300m", "AnnAvg_1_15_300m")
+
 target_crs_epsg = "EPSG:26918"  # Matching working model
 column_prefix = "random_sample"
-output_csv = r"D:\PLSCI 5200\Final_Project_GIS\Random_UAG_ptv_sample.csv"
+output_csv = os.path.join(project_root, "outputs", "tables", "Random_UAG_ptv_sample.csv")
 #---
 
 #--- Initiate Vector Layer

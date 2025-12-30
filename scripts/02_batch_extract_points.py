@@ -84,11 +84,19 @@ def process_raster_sample_points(raster_path, point_layer, target_crs, column_pr
 
     
 # --- USER INPUTS ---
-input_point_layer_path = r"D:\PLSCI 5200\Final_Project_GIS\Data\nyc_moua\nyc_moua.gpkg"
-root_raster_folder = r"D:\PLSCI 5200\Final_Project_GIS\Data\air-quality\air_quality_NYCCAS\AnnAvg_1_15_300m\AnnAvg_1_15_300m"
+# Define paths relative to this script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+
+# Input Paths
+input_point_layer_path = os.path.join(project_root, "data", "raw", "Data", "nyc_moua", "nyc_moua.gpkg")
+root_raster_folder = os.path.join(project_root, "data", "raw", "Data", "air-quality", "air_quality_NYCCAS", "AnnAvg_1_15_300m", "AnnAvg_1_15_300m")
+
 target_crs_epsg = "EPSG:26918"  # Matching working model
 column_prefix = "sample"
-output_csv = r"D:\PLSCI 5200\Final_Project_GIS\sampled_points_output.csv"
+
+# Output Paths
+output_csv = os.path.join(project_root, "outputs", "tables", "sampled_points_output.csv")
 # ---------------------
 
 # Load the point layer

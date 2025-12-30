@@ -120,12 +120,16 @@ def process_raster_points_buffer_zonal(raster_path, point_layer, target_crs, col
 
     
 # --- USER INPUTS ---
-input_point_layer_path = r"D:\PLSCI 5200\Final_Project_GIS\Data\nyc_moua\nyc_moua.gpkg"
-root_raster_folder = r"D:\PLSCI 5200\Final_Project_GIS\Data\air-quality\air_quality_NYCCAS\AnnAvg_1_15_300m\AnnAvg_1_15_300m"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+
+input_point_layer_path = os.path.join(project_root, "data", "raw", "Data", "nyc_moua", "nyc_moua.gpkg")
+root_raster_folder = os.path.join(project_root, "data", "raw", "Data", "air-quality", "air_quality_NYCCAS", "AnnAvg_1_15_300m", "AnnAvg_1_15_300m")
+
 target_crs_epsg = "EPSG:26918"  # Matching working model
 column_prefix = "sample"
 zonal_prefix = 'buffer_300m'
-output_csv = r"D:\PLSCI 5200\Final_Project_GIS\UAG_buffer_zonal.csv"
+output_csv = os.path.join(project_root, "outputs", "tables", "UAG_buffer_zonal.csv")
 # ---------------------
 
 # Load the point layer
@@ -164,7 +168,7 @@ for dirpath, dirnames, filenames in os.walk(root_raster_folder):
 #     print("✅ All samples collected. Final DataFrame shape:", final_df.shape)
 
 # Optional: Save to CSV
-UAG_buffer_zonal.to_csv(r"D:\PLSCI 5200\Final_Project_GIS\UAG_buffer_zonal.csv", index=False)
+UAG_buffer_zonal.to_csv(output_csv, index=False)
 print(f"📁 Saved output CSV to: {output_csv}")
 
 
